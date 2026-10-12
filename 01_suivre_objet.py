@@ -15,13 +15,12 @@ DOSSIER_SUIVI = "data/suivi"
 # plage de vert en HSV (teinte, saturation, valeur) -- a ajuster si besoin
 VERT_MIN = np.array([35, 90, 60])
 VERT_MAX = np.array([85, 255, 255])
-SURFACE_MIN = 150  # en pixels, en dessous on considere que ce n'est pas l'objet
+SURFACE_MIN = 40  # en pixels, en dessous on considere que ce n'est pas l'objet
 
 
 def position_objet(image):
     """Renvoie (x, y) en pixels du centre de la zone verte, ou None."""
-    petite = cv2.resize(image, (image.shape[1] // 2, image.shape[0] // 2))
-    hsv = cv2.cvtColor(petite, cv2.COLOR_BGR2HSV)
+    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
     masque = cv2.inRange(hsv, VERT_MIN, VERT_MAX)
     masque = cv2.morphologyEx(masque, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
 
@@ -33,7 +32,7 @@ def position_objet(image):
     meilleur = 1 + np.argmax(stats[1:, cv2.CC_STAT_AREA])
     if stats[meilleur, cv2.CC_STAT_AREA] < SURFACE_MIN:
         return None
-    return centres[meilleur] * 2  # *2 car on avait reduit l'image
+    return centres[meilleur]
 
 
 def main():

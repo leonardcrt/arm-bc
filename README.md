@@ -26,12 +26,12 @@ python 01_suivre_objet.py
 python 02_decouper.py
 ```
 
-Les videos ne sont pas dans le depot (trop lourdes). Les positions suivies
-(`data/suivi/`) et les demos (`data/demos/`) y sont.
+Les videos du depot sont des versions compressees (540x960, H.264) de mes videos originales
+(1080x1920, 500 Mo). Le resultat du suivi est le meme : 100 demos dans les deux cas.
 
 ## Organisation
 
-- `data/videos/` : mes videos (non versionnees)
+- `data/videos/` : mes videos (compressees)
 - `data/calibration/` : homographie de chaque video + image de controle
 - `data/suivi/` : position de l'objet image par image
 - `data/demos/` : une trajectoire par demonstration
