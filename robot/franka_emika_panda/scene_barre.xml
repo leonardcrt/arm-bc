@@ -1,0 +1,32 @@
+<!-- Scene : le Panda pose sur une table, une barre a deplacer de A vers B -->
+<mujoco model="scene_barre">
+  <include file="panda.xml"/>
+
+  <statistic center="0.4 0 0.1" extent="0.8"/>
+
+  <visual>
+    <global azimuth="130" elevation="-35"/>
+    <headlight diffuse="0.7 0.7 0.7" ambient="0.4 0.4 0.4"/>
+  </visual>
+
+  <worldbody>
+    <light pos="0.5 0 1.5" dir="0 0 -1"/>
+
+    <!-- la table (le sol) -->
+    <geom name="table" type="plane" size="0.9 0.9 0.1" rgba="0.93 0.92 0.86 1"
+          friction="1 0.005 0.0001"/>
+
+    <!-- zones A et B : juste visuelles, la barre peut passer dessus -->
+    <geom name="zone_A" type="box" pos="0.45 -0.17 0.001" size="0.10 0.05 0.001"
+          rgba="0.7 0.7 0.9 1" contype="0" conaffinity="0"/>
+    <geom name="zone_B" type="box" pos="0.45 0.18 0.001" size="0.10 0.05 0.001"
+          rgba="0.25 0.25 0.3 1" contype="0" conaffinity="0"/>
+
+    <!-- la barre : 15 cm x 3 cm x 2,4 cm -->
+    <body name="barre" pos="0.45 -0.17 0.012">
+      <freejoint name="barre_joint"/>
+      <geom name="barre" type="box" size="0.075 0.015 0.012" mass="0.05"
+            rgba="0.2 0.75 0.2 1" friction="1.5 0.05 0.001"/>
+    </body>
+  </worldbody>
+</mujoco>
