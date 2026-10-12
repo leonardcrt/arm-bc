@@ -1,0 +1,5 @@
+# les videos font plusieurs centaines de Mo : on ne les met pas sur GitHub
+data/videos/*
+!data/videos/.gitkeep
+__pycache__/
+*.pyc
